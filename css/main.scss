@@ -1,0 +1,129 @@
+$primaryDark : #361d32;
+$primaryLight : #353535;
+$secondaryLight : #f55951;
+$textLight : #ddc1ba;
+$textDark : #a08c86;
+$textWhite: #fff;
+$atmFree: #1ac40b;
+$atmBusy: #e20303c7;
+$queueColor1 : #5cbbbb;
+$queueColor2 : #edf101;
+$queueColor3 : #5fd31c;
+$queueColor4 : #430070;
+$queueColor5 : #fff;
+$queueColor6 : #000000;
+$queueColor7 : #752785;
+$queueColor8 : #202cd4;
+
+@mixin flex ($direction,$justify,$align) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+* {
+    user-select: none;
+}
+html {
+    font-size: 16px;
+}
+.wrapper {
+    min-height: 100vh;
+    background-color: $primaryLight;
+    @include flex (column, flex-start, center);
+}
+
+.atmSection {
+    min-height: 30vh;
+    width: 100%;
+    @include flex (row, space-around, center);
+    flex-wrap: wrap;
+
+    &__item {
+        height: 100px;
+        width: 60px;
+        margin: 20px 20px;
+        color: $textWhite;
+        background-color: $atmFree;
+        @include flex (row, center, center);
+
+        &-busy {
+            background-color: $atmBusy;
+        }
+    }
+}
+
+.queueSection {
+    height: 60vh;
+    width: 100%;
+    @include flex (column, flex-start, center);
+    flex-wrap: wrap;
+    align-content: center;
+
+    &__item {
+        font-size: 1rem;
+        height: 2rem;
+        width: 2rem;
+        margin: 0.5rem 0.5rem;
+        border-radius: 50%;
+        opacity: 0;
+        animation: new-item-animation .5s linear forwards;
+         
+        &-1 {
+            background-color: $queueColor1;
+        }
+        &-2 {
+            background-color: $queueColor2;
+        }
+        &-3 {
+            background-color: $queueColor3;
+        }
+        &-4 {
+            background-color: $queueColor4;
+        }
+        &-5 {
+            background-color: $queueColor5;
+        }
+        &-6 {
+            background-color: $queueColor6;
+        }
+        &-7 {
+            background-color: $queueColor7;
+        }
+        &-8 {
+            background-color: $queueColor8;
+        }
+    }
+}
+.controlsSection {
+    min-height: 10vh;
+    width: 100%;
+    @include flex (row, space-around, center);
+
+    &__button {
+        font-size: 1.5rem;
+        margin: 0.7em;
+        color: $textWhite;
+        background-color: $textDark;
+        outline: none;
+        border: 2px solid $textLight;
+        &:hover {
+            background-color: $textLight;
+        }
+        &:active {
+            border-color:$secondaryLight;
+        }
+        &-disabled {
+            pointer-events: none;
+        }
+    }
+}
+@keyframes new-item-animation {
+    from {
+        opacity: 0;
+}
+ 
+    to {
+        opacity: 1;
+    }
+}
